@@ -1,5 +1,6 @@
 import Char (ord,chr)
 import System(getArgs)
+import IO
 
 data State = State {
     leftTape :: [Integer],
@@ -47,5 +48,8 @@ bf commands input = _bf (State [] [] "" commands input)
 
 main = do
     args <- getArgs
+    hSetBuffering stdin NoBuffering
+    hSetBuffering stdout NoBuffering
+    hSetBuffering stderr NoBuffering
     commands <- readFile (head args)
     interact (bf commands)
