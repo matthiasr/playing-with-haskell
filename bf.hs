@@ -1,4 +1,5 @@
 import Char (ord,chr)
+import System(getArgs)
 
 data State = State {
     leftTape :: [Integer],
@@ -44,3 +45,8 @@ _bf (State lt rt lc (c:rc) i o) = _bf (State lt rt (c:lc) rc i o) -- ignore ever
 
 bf :: String -> String -> String
 bf commands input = reverse (output (_bf (State [] [] "" commands input "")))
+
+main = do
+    args <- getArgs
+    commands <- readFile (head args)
+    interact (bf commands)
