@@ -26,7 +26,7 @@ jumpRight :: State -> State
 jumpRight (State lts rts lcs (c:rcs) i o) = _jumpRight 1 (State lts rts (c:lcs) rcs i o)
 
 jumpLeft :: State -> State
-jumpLeft (State lts rts (c:lcs) rcs i o) = _jumpLeft 1 (State lts rts lcs (c:rcs) i o)
+jumpLeft (State lts rts lcs rcs i o) = _jumpLeft 1 (State lts rts lcs rcs i o)
 
 _bf :: State -> State
 _bf state@(State {rightCommands = []}) = state -- Termination: out of commands.
